@@ -1,0 +1,9 @@
+F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\BUS.dll
+F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\BUS.pdb
+F:\Projects\LTWeb\WebBanHang\BUS\obj\Debug\BUS.csprojResolveAssemblyReference.cache
+F:\Projects\LTWeb\WebBanHang\BUS\obj\Debug\BUS.dll
+F:\Projects\LTWeb\WebBanHang\BUS\obj\Debug\BUS.pdb
+F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\DAO.dll
+F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\DAO.pdb
+F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\Entities.dll
+F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\Entities.pdb

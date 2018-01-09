@@ -1,0 +1,5 @@
+F:\Projects\LTWeb\WebBanHang\Language\bin\Debug\Language.dll
+F:\Projects\LTWeb\WebBanHang\Language\bin\Debug\Language.pdb
+F:\Projects\LTWeb\WebBanHang\Language\obj\Debug\Language.csprojResolveAssemblyReference.cache
+F:\Projects\LTWeb\WebBanHang\Language\obj\Debug\Language.dll
+F:\Projects\LTWeb\WebBanHang\Language\obj\Debug\Language.pdb

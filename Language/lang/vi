@@ -1,0 +1,5 @@
+﻿LANGUAGE_NAME:Việt Nam
+UNKNOWN_STRING:Tôi không biết.
+USERNAME_EMPTY_MESSAGE:Tên đăng nhập không được bỏ trống.
+USERNAME_INVALID_LENGTH_MESSAGE: Tên đăng nhập phải có độ dài từ 3 đến 10
+USERNAME_INVALID_CHARACTER_MESSAGE: Tên đăng nhập phải có các kí tự a-z, A-Z, 0-9 và dấu gạch dưới (_)
