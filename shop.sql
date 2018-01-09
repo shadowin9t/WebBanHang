@@ -1,5 +1,6 @@
 ﻿
 create database shop;
+create table dangnhapthanhcong();
 use shop;
 create table tb_user(
 username char(20) primary key,
