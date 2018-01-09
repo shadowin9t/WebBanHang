@@ -49,16 +49,18 @@ permissionid char(30) primary key,
 permissionname nvarchar(255)
 );
 
+select * from tb_permission_user;
+
 create table tb_permission_user(
 permissionid char(30) foreign key references tb_permission(permissionid),
 username char(20) foreign key references tb_user(username),
 primary key (permissionid, username)
 );
 
-insert into tb_permission values('ADMINISTRATION',N'Quyền quản trị hệ thống');
-insert into tb_permission values('USERS_MANAGEMENT',N'Quyền quản lí người dùng');
-insert into tb_permission values('PRODUCT_CATEGORY_MANAGEMENET',N'Quyền quản lí loại sản phẩm');
-insert into tb_permission values('PRODUCTS_MANAGEMENT', N'Quyền quản lí sản phẩm');
-insert into tb_permission values('ORDERS_MANAGEMENT', N'Quyền quản lí đơn đặt hàng');
+insert into tb_permission values('SUPER_ADMIN',N'Quyền quản trị hệ thống');
+insert into tb_permission values('USER_ADMIN',N'Quyền quản lí người dùng');
+insert into tb_permission values('PRODUCT_ADMIN',N'Quyền quản lí sản phẩm');
+insert into tb_permission values('ORDER_ADMIN', N'Quyền quản lí đơn đặt hàng');
+insert into tb_permission values('ARTICLE_ADMIN', N'Quyền quản lí bài viết');
 
-insert into tb_permission_user values('USERS_MANAGEMENT','thanhtuan');
+insert into tb_permission_user values('SUPER_ADMIN','admin');
