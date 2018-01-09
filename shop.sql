@@ -1,4 +1,4 @@
-﻿
+﻿----------------------///////////////////////////////////////////////OK
 create database shop;
 use shop;
 create table tb_user(
