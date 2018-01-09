@@ -25,23 +25,17 @@ namespace WebBanHang
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
             UserEntity user = BUS.UserBus.Instance.GetUser(txtUsername.Text, txtPassword.Text);
-            if (user == null)
+            if (!AuthenticateHelper.Login(txtUsername.Text, txtPassword.Text, RememberMe.Checked, Response))
             {
                 pMessage.InnerText = "Tên tài khoản hoặc mật khẩu không đúng";
                 txtPassword.Text = "";
-            }
-            else
+            }else
             {
-                string roles = BUS.UserBus.Instance.GetPermissionStr(user.Username);
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txtUsername.Text, DateTime.Now, DateTime.Now.AddMinutes(60*24*10), RememberMe.Checked, roles);
-                string hashString = FormsAuthentication.Encrypt(ticket);
-                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hashString);
-                if (ticket.IsPersistent)
-                {
-                    cookie.Expires = ticket.Expiration;
-                }
-                Response.Cookies.Add(cookie);
-                FormsAuthentication.RedirectFromLoginPage(user.Username, true);
+                string str = Request.QueryString["returnURL"];
+                if (str != null)
+                    Response.Redirect(str);
+                else
+                    Response.Redirect("~/Default.aspx");
             }
         }
     }

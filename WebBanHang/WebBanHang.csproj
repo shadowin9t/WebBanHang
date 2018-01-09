@@ -223,6 +223,7 @@
     <Compile Include="Admin\User\UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AuthenticateHelper.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -290,16 +291,8 @@
     <Compile Include="UserControls\UserPanelUC.ascx.designer.cs">
       <DependentUpon>UserPanelUC.ascx</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo.aspx.cs">
-      <DependentUpon>UserInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo.aspx.designer.cs">
-      <DependentUpon>UserInfo.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UserInfo.aspx" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -325,6 +318,8 @@
     <Folder Include="App_Data\images\categories\" />
     <Folder Include="images\categories\" />
     <Folder Include="images\products\" />
+    <Folder Include="UserControls\Customer\" />
+    <Folder Include="UserControls\Product\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

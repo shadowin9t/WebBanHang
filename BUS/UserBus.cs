@@ -162,8 +162,37 @@ namespace BUS
         public string GetPermissionStr(string username)
         {
             var ls = GetPermission(username);
-            var a = ls.Select(p => p.ID).ToArray();
-            return String.Join(",", a);
+            string str = "admin";
+            foreach(var p  in ls)
+            {
+                str += "," + p.ID;
+            }
+            return str;
+        }
+
+        public int AddPermission(UserEntity user, PermissionEntity p)
+        {
+            string sql = "insert into tb_permission_user values(@permission, @username)";
+            var pars = new SqlParameter[] {
+                new SqlParameter("@username", user.Username),
+                new SqlParameter("@permission", p.ID)
+            };
+            return DataConfig.Instance.ExecuteNonQuery(sql, pars);
+        }
+
+        public int UpdatePermission(UserEntity user, List<PermissionEntity> pers)
+        {
+            string sql = "delete from tb_permission_user where username = @username";
+            SqlParameter[] pars = new SqlParameter[] {
+                new SqlParameter("@username", user.Username)
+            };
+            DataConfig.Instance.ExecuteNonQuery(sql,pars);
+            int count = 0;
+            foreach(var p in pers)
+            {
+                count += AddPermission(user, p);
+            }
+            return count;
         }
     }
 }

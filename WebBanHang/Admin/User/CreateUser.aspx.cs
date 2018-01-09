@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Entities;
+using BUS;
 using System.Web.UI.HtmlControls;
 
 namespace WebBanHang.Admin.User

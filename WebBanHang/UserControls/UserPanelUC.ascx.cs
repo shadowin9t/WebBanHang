@@ -35,25 +35,14 @@ namespace WebBanHang.UserControls
 
         protected void btnlogin_ServerClick(object sender, EventArgs e)
         {
-            UserEntity user = BUS.UserBus.Instance.GetUser(inputusername.Value, inputpwd.Value);
-            if (user == null)
+            if (!AuthenticateHelper.Login(inputusername.Value, inputpwd.Value, false, Response))
             {
                 Response.Redirect("~/login.aspx");
             }
             else
             {
-                string roles = BUS.UserBus.Instance.GetPermissionStr(user.Username);
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, inputusername.Value, DateTime.Now, DateTime.Now.AddMinutes(60 * 24 * 10), false, roles);
-                string hashString = FormsAuthentication.Encrypt(ticket);
-                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hashString);
-                if (ticket.IsPersistent)
-                {
-                    cookie.Expires = ticket.Expiration;
-                }
-                Response.Cookies.Add(cookie);
-                FormsAuthentication.RedirectFromLoginPage(user.Username, true);
+                LoadControl();
             }
-            LoadControl();
         }
     }
 }

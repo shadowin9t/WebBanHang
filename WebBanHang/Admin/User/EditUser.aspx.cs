@@ -22,16 +22,32 @@ namespace WebBanHang.Admin.User
                 if (String.IsNullOrEmpty(querystring))
                     Response.Redirect("UserList.aspx");
                 var edituser = BUS.UserBus.Instance.GetUser(querystring);
+                
                 if (edituser == null)
+                {
                     Response.Redirect("UserList.aspx");
-               // Binding(user);
+                    return;
+                }
+                Binding(edituser);
             }
         }
 
         void Binding(UserEntity user)
         {
+            var ls = BUS.UserBus.Instance.GetPermission(user.Username);
+            
             cblPermissions.DataSource = BUS.PermissionBus.Instance.GetPermissions();
             cblPermissions.DataBind();
+
+            foreach (ListItem item in cblPermissions.Items)
+            {
+                foreach(var p in ls)
+                {
+                    if (p.ID == item.Value)
+                        item.Selected = true;
+                }
+            }
+
             username.Value = user.Username;
             firstname.Value = user.Firstname;
             lastname.Value = user.Lastname;
@@ -73,9 +89,12 @@ namespace WebBanHang.Admin.User
             try
             {
                 var user = GetUser();
+                var ps = GetPermissions();
                 if(user!=null)
                 {
                     BUS.UserBus.Instance.UpdateUser(user);
+                    BUS.UserBus.Instance.UpdatePermission(user, ps);
+                    Binding(user);
                 }
                 else
                 {
@@ -91,13 +110,32 @@ namespace WebBanHang.Admin.User
 
         }
 
+        public List<PermissionEntity> GetPermissions()
+        {
+            var ls = new List<PermissionEntity>();
+            foreach(ListItem item in cblPermissions.Items)
+            {
+                if(item.Selected)
+                {
+                    var p = new PermissionEntity();
+                    p.ID = item.Value;
+                    ls.Add(p);
+                }
+                
+            }
+            return ls;
+        }
+
         protected void btnSaveNClose_Click(object sender, EventArgs e)
         {
             var user = GetUser();
+            var ps = GetPermissions();
             if (user != null)
             {
                 BUS.UserBus.Instance.UpdateUser(user);
+                BUS.UserBus.Instance.UpdatePermission(user, ps);
                 Response.Redirect(Page.ResolveUrl("UserList.aspx"));
+                Binding(user);
             }
             else
             {
@@ -110,10 +148,13 @@ namespace WebBanHang.Admin.User
         protected void btnSaveNNew_Click(object sender, EventArgs e)
         {
             var user = GetUser();
+            var ps = GetPermissions();
             if (user != null)
             {
                 BUS.UserBus.Instance.UpdateUser(user);
+                BUS.UserBus.Instance.UpdatePermission(user, ps);
                 Response.Redirect("CreateUser.aspx");
+                Binding(user);
             }
             else
             {
