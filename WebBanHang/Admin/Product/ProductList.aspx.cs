@@ -23,11 +23,38 @@ namespace WebBanHang.Admin.User
             GridView1.DataBind();
         }
 
+        void CreateErrorMessage(string message)
+        {
+            error_message.Controls.Clear();
+            HtmlGenericControl div = new HtmlGenericControl();
+            div.TagName = "div";
+            div.Attributes["class"] = "alert alert-danger";
+            div.InnerText = message;
+            error_message.Controls.Add(div);
+        }
+
+        void CreateSuccessMessage(string message)
+        {
+            succ_message.Controls.Clear();
+            HtmlGenericControl div = new HtmlGenericControl();
+            div.TagName = "div";
+            div.Attributes["class"] = "alert alert-success";
+            div.InnerText = message;
+            succ_message.Controls.Add(div);
+        }
+
+        void AddErrorMessage()
+        {
+
+        }
+
+        //Redirect to addproduct page
         protected void addBtn_ServerClick(object sender, EventArgs e)
         {
             Response.Redirect("AddProduct.aspx");
         }
 
+        //Delete selected products
         protected void deleteBtn_ServerClick(object sender, EventArgs e)
         {
             try
@@ -44,24 +71,17 @@ namespace WebBanHang.Admin.User
                     }
                 }
 
-                HtmlGenericControl div = new HtmlGenericControl();
-                div.TagName = "div";
-                div.Attributes["class"] = "alert alert-success";
-                div.InnerText = "Đã xóa " + count.ToString() + " người dùng";
-                message.Controls.Add(div);
+                CreateSuccessMessage("Đã xóa " + count.ToString() + " người dùng");
                 LoadData();
             }
             catch (Exception exception)
             {
-                HtmlGenericControl div = new HtmlGenericControl();
-                div.TagName = "div";
-                div.Attributes["class"] = "alert alert-danger";
-                div.InnerText = exception.Message;
-                message.Controls.Add(div);
+                CreateErrorMessage(exception.Message);
                 LoadData();
             }
         }
 
+        //Update product status by his value passing
         void UpdateStatuses(int value)
         {
             try
@@ -78,20 +98,12 @@ namespace WebBanHang.Admin.User
                     }
                 }
 
-                HtmlGenericControl div = new HtmlGenericControl();
-                div.TagName = "div";
-                div.Attributes["class"] = "alert alert-success";
-                div.InnerText = "Da cap nhat trang thai " + count.ToString() + " loai san pham";
-                message.Controls.Add(div);
+                CreateSuccessMessage("Đã cập nhật trạng thái " + count.ToString() + " sản phẩm");
                 LoadData();
             }
             catch (Exception exception)
             {
-                HtmlGenericControl div = new HtmlGenericControl();
-                div.TagName = "div";
-                div.Attributes["class"] = "alert alert-danger";
-                div.InnerText = exception.Message;
-                message.Controls.Add(div);
+                CreateErrorMessage(exception.Message);
                 LoadData();
             }
         }
@@ -104,6 +116,43 @@ namespace WebBanHang.Admin.User
         protected void Unpublish_ServerClick(object sender, EventArgs e)
         {
             UpdateStatuses(1);
+        }
+
+        void UpdateFeature(bool value)
+        {
+            try
+            {
+                int count = 0;
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    CheckBox cb = (CheckBox)row.Cells[0].FindControl("chbox");
+                    if (cb != null && cb.Checked)
+                    {
+                        string id = GridView1.DataKeys[row.RowIndex].Value.ToString();
+                        ProductBus.Instance.UpdateFeature(value, id);
+                        count++;
+                    }
+                }
+
+                CreateSuccessMessage("Đã cập nhật trạng thái " + count.ToString() + " sản phẩm");
+                LoadData();
+            }
+            catch (Exception exception)
+            {
+                CreateErrorMessage(exception.Message);
+                LoadData();
+            }
+
+        }
+
+        protected void SetFeature_ServerClick(object sender, EventArgs e)
+        {
+            UpdateFeature(true);
+        }
+
+        protected void SetNotFeature_ServerClick(object sender, EventArgs e)
+        {
+            UpdateFeature(false);
         }
     }
 }

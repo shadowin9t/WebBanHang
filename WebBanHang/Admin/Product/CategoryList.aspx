@@ -2,7 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-
     <form runat="server">
     <div class="btn-group">
         <button type="button" class="btn btn-primary" id="addBtn" runat="server" onserverclick="addBtn_ServerClick">Thêm</button>

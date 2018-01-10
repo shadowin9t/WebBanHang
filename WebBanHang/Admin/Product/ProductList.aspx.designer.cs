@@ -49,13 +49,40 @@ namespace WebBanHang.Admin.User {
         protected global::System.Web.UI.HtmlControls.HtmlButton Unpublish;
         
         /// <summary>
-        /// message control.
+        /// SetFeature control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl message;
+        protected global::System.Web.UI.HtmlControls.HtmlButton SetFeature;
+        
+        /// <summary>
+        /// SetNotFeature control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton SetNotFeature;
+        
+        /// <summary>
+        /// succ_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl succ_message;
+        
+        /// <summary>
+        /// error_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl error_message;
         
         /// <summary>
         /// GridView1 control.

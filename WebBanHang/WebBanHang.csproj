@@ -96,6 +96,7 @@
   <ItemGroup>
     <Content Include="Admin\ErrorPage\PermissionDenied.aspx" />
     <Content Include="Admin\Index.aspx" />
+    <Content Include="Admin\Product\EditProduct.aspx" />
     <Content Include="Admin\Product\AddProduct.aspx" />
     <Content Include="Admin\Product\AddCategory.aspx" />
     <Content Include="Admin\Product\ProductList.aspx" />
@@ -107,6 +108,7 @@
     <Content Include="Admin\User\CreateUser.aspx" />
     <Content Include="Admin\User\UserList.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="images\products\default.png" />
     <Content Include="login.aspx" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
@@ -132,6 +134,7 @@
     <Content Include="Scripts\tether.min.js" />
     <Content Include="Styles\shop-homepage.css" />
     <Content Include="UserControls\AdminSideMenuUC.ascx" />
+    <Content Include="UserControls\ImageUploadUC.ascx" />
     <Content Include="UserControls\ProductsControl.ascx" />
     <Content Include="UserControls\ProductSumary.ascx" />
     <Content Include="UserControls\RandomProduct.ascx" />
@@ -166,6 +169,13 @@
     </Compile>
     <Compile Include="Admin\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Product\EditProduct.aspx.cs">
+      <DependentUpon>EditProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Product\EditProduct.aspx.designer.cs">
+      <DependentUpon>EditProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Product\AddProduct.aspx.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
@@ -256,6 +266,13 @@
     <Compile Include="UserControls\AdminSideMenuUC.ascx.designer.cs">
       <DependentUpon>AdminSideMenuUC.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ImageUploadUC.ascx.cs">
+      <DependentUpon>ImageUploadUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ImageUploadUC.ascx.designer.cs">
+      <DependentUpon>ImageUploadUC.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProductsControl.ascx.cs">
       <DependentUpon>ProductsControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -317,7 +334,7 @@
   <ItemGroup>
     <Folder Include="App_Data\images\categories\" />
     <Folder Include="images\categories\" />
-    <Folder Include="images\products\" />
+    <Folder Include="images\temp\" />
     <Folder Include="UserControls\Customer\" />
     <Folder Include="UserControls\Product\" />
   </ItemGroup>

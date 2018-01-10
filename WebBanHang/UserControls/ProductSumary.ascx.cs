@@ -20,7 +20,7 @@ namespace WebBanHang.UserControls
                 ProductHeader.InnerText = Product.ProductName;
                 imgproduct.Src = ResolveUrl("~/images/products/" + Product.DisplayImage);
                 hfinalprice.InnerText = Product.FinalPrice.ToString();
-                pfeature.InnerText = Product.Feature;
+                pfeature.InnerText = Product.ShortDescription;
 
         }
     }

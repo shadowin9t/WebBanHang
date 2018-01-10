@@ -30,7 +30,7 @@ namespace BUS
 
         public ProductEntity GetProductById(string id)
         {
-            string sql = "select * tb_product where productid = @id";
+            string sql = "select * from tb_product where productid = @id";
             SqlParameter[] pars = new SqlParameter[] {
                 new SqlParameter("@id",id)
             };
@@ -53,12 +53,13 @@ namespace BUS
         public int InsertProduct(Entities.ProductEntity p)
         {
             string sql = "insert into tb_product values("+
-                "@id,@name,@feature,@discription,@price,@finalprice,@image,@quantity,@status,@by,@date,@cate"+
+                "@id,@name,@feature,@short,@discription,@price,@finalprice,@image,@quantity,@status,@by,@date,@cate"+
                 ")";
             SqlParameter[] pars = new SqlParameter[] {
                 new SqlParameter("@id", p.ID),
                 new SqlParameter("@name", p.ProductName),
                 new SqlParameter("@feature", p.Feature),
+                new SqlParameter("@short",p.ShortDescription),
                 new SqlParameter("@discription", p.Discription),
                 new SqlParameter("@price", p.Price),
                 new SqlParameter("@finalprice", p.FinalPrice),
@@ -72,21 +73,25 @@ namespace BUS
             return DataConfig.Instance.ExecuteNonQuery(sql, pars);
         }
 
-        public int UpdateProduct(Dictionary<string, object> value, string id)
+        public int UpdateProduct(ProductEntity p, string id)
         {
-            string sql = "update tb_product set {0} where productid = @id";
-            string parameter = String.Empty;
-            SqlParameter[] pars = new SqlParameter[value.Count + 1];
-            pars[value.Count] = new SqlParameter("@id", id);
-            int count = 0;
-            foreach (var item in value)
-            {
-                if (count != 0)
-                    parameter += ",";
-                parameter += "@" + item.Key + " = " + item.Value;
-                pars[count] = new SqlParameter("@"+item.Key, item.Value);
-            }
-            sql = String.Format(sql, parameter);
+            string sql = "update tb_product set "+
+                " productname = @name, feature = @feature, shortdiscription=@short," +
+                " discription = @discription, price = @price, finalprice = @fprice, displayimage=@image, quantity=@quantity, statusid=@status, categoryid=@cate"+
+                " where productid = @id;";
+            SqlParameter[] pars = new SqlParameter[] {
+                new SqlParameter("@id", p.ID),
+                new SqlParameter("@name", p.ProductName),
+                new SqlParameter("@feature", p.Feature),
+                new SqlParameter("@short",p.ShortDescription),
+                new SqlParameter("@discription", p.Discription),
+                new SqlParameter("@price", p.Price),
+                new SqlParameter("@fprice", p.FinalPrice),
+                new SqlParameter("@image", p.DisplayImage),
+                new SqlParameter("@quantity", p.Quantity),
+                new SqlParameter("@status",p.StatusId),
+                new SqlParameter("@cate", p.ProductCategory.ID)
+            };
             return DataConfig.Instance.ExecuteNonQuery(sql, pars);
         }
 
@@ -95,7 +100,8 @@ namespace BUS
             var p = new ProductEntity();
             p.ID = row["productid"].ToString();
             p.ProductName = row["productname"].ToString();
-            p.Feature = row["feature"].ToString();
+            p.Feature = (bool) row["feature"];
+            p.ShortDescription = row["shortdiscription"].ToString();
             p.Discription = row["discription"].ToString();
             p.Price = Convert.ToSingle(row["price"]);
             p.FinalPrice = Convert.ToSingle(row["finalprice"]);
@@ -130,6 +136,16 @@ namespace BUS
             string sql = "update tb_product set statusid = @status where productid = @id";
             SqlParameter[] pars = new SqlParameter[] {
                 new SqlParameter("@status", value),
+                new SqlParameter("@id", id)
+            };
+            return DataConfig.Instance.ExecuteNonQuery(sql, pars);
+        }
+
+        public int UpdateFeature(bool value, string id)
+        {
+            string sql = "update tb_product set feature = @feature where productid = @id;";
+            var pars = new SqlParameter[] {
+                new SqlParameter("@feature", value),
                 new SqlParameter("@id", id)
             };
             return DataConfig.Instance.ExecuteNonQuery(sql, pars);

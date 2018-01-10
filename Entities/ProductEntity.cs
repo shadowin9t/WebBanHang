@@ -39,7 +39,8 @@ namespace Entities
         public string ID { get; set; }
         [Required]
         public string ProductName { get; set; }
-        public string Feature { get; set; }
+        public bool Feature { get; set; }
+        public string ShortDescription { get; set; }
         public string Discription { get; set; }
         public float Price { get; set; }
         [Required]
@@ -64,7 +65,6 @@ namespace Entities
 
         public string StatusName { get { return Status.Name; } }
 
-        [Required]
         public UserEntity CreatedBy { get; set; }
 
         public string Username { get { return CreatedBy.Username; } }

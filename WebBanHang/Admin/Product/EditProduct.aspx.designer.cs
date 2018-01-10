@@ -10,7 +10,7 @@
 namespace WebBanHang.Admin.Product {
     
     
-    public partial class AddProduct {
+    public partial class EditProduct {
         
         /// <summary>
         /// btnSave control.
@@ -85,15 +85,6 @@ namespace WebBanHang.Admin.Product {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbFeature;
         
         /// <summary>
-        /// imageupload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::WebBanHang.UserControls.ImageUploadUC imageupload;
-        
-        /// <summary>
         /// ddlCategory control.
         /// </summary>
         /// <remarks>
@@ -146,6 +137,15 @@ namespace WebBanHang.Admin.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        
+        /// <summary>
+        /// imagefile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload imagefile;
         
         /// <summary>
         /// discription control.

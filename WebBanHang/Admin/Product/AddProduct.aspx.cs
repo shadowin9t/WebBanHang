@@ -36,41 +36,18 @@ namespace WebBanHang.Admin.Product
             var v = new ProductEntity();
             v.ID = productid.Value;
             v.ProductName = productname.Value;
-            v.Feature = feature.Value;
+            v.Feature = cbFeature.Checked;
+            v.ShortDescription = shordescription.Value;
             v.Discription = discription.Value;
             v.Price = float.Parse(price.Value);
             v.FinalPrice = float.Parse(finalprice.Value);
             v.Quantity = int.Parse(quantity.Value);
             v.Status = StatusBus.Instance.GetStatus(int.Parse(ddlStatus.SelectedValue));
-            v.CreatedBy = Session["User"] as UserEntity;
+            v.CreatedBy = BUS.UserBus.Instance.GetUser(User.Identity.Name);
             v.CreatedDate = DateTime.Now;
             v.ProductCategory = CategoryBus.Instance.GetBasicCategoryById(ddlCategory.SelectedValue);
+            v.DisplayImage = imageupload.GetUrl();
             return v;
-        }
-
-        bool UploadImage(ProductEntity v, out string message)
-        {
-            if (imagefile.HasFile)
-            {
-                if (imagefile.PostedFile.ContentType == "image/png")
-                {
-                    if (imagefile.PostedFile.ContentLength < 1024000)
-                    {
-                        string filename = Hash.getHashSha256(v.ID) + System.IO.Path.GetExtension(imagefile.FileName);
-                        imagefile.SaveAs(Server.MapPath("~/images/products/") + filename);
-                        message = "FILE_UPLOAD_SUCCESS";
-                        v.DisplayImage = filename;
-                        return true;
-                    }
-                    else
-                        message = "FILE_UPLOAD_TOO_BIG";
-                }
-                else
-                    message = "INVALID_IMAGE_FORMAT";
-                return false;
-            }
-            message = "NO_FILE_UPLOADED";
-            return false;
         }
 
         void ClearMessage()
@@ -96,23 +73,18 @@ namespace WebBanHang.Admin.Product
                 var valid = p.IsValidNewProdcut(ls);
                 if (valid)
                 {
-                    string message;
-                    var upload = UploadImage(p, out message);
-                    if (upload)
-                    {
-                        ProductBus.Instance.InsertProduct(p);
-                    }
-                    else
-                        AddMessage(message);
+                    if (ProductBus.Instance.InsertProduct(p) >= 1)
+                        Response.Redirect("~/Admin/Product/EditProduct.aspx?ID=" + p.ID);
                 }
                 else
                 {
-                    foreach(var re in ls)
+                    foreach (var re in ls)
                     {
                         AddMessage(re.ErrorMessage);
                     }
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 AddMessage(ex.Message);
             }
@@ -120,12 +92,61 @@ namespace WebBanHang.Admin.Product
 
         protected void btnSaveNClose_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                ClearMessage();
+                var p = GetProduct();
+                var ls = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                var valid = p.IsValidNewProdcut(ls);
+                if (valid)
+                {
+                    if (ProductBus.Instance.InsertProduct(p) >= 1)
+                        Response.Redirect("~/Admin/Product/ProductList.aspx");
+                }
+                else
+                {
+                    foreach (var re in ls)
+                    {
+                        AddMessage(re.ErrorMessage);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                AddMessage(ex.Message);
+            }
         }
 
         protected void btnSaveNNew_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ClearMessage();
+                var p = GetProduct();
+                var ls = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+                var valid = p.IsValidNewProdcut(ls);
+                if (valid)
+                {
+                    if (ProductBus.Instance.InsertProduct(p) >= 1)
+                        Response.Redirect("~/Admin/Product/AddProduct.aspx");
+                }
+                else
+                {
+                    foreach (var re in ls)
+                    {
+                        AddMessage(re.ErrorMessage);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                AddMessage(ex.Message);
+            }
+        }
 
+        protected void imageupload_GetError(object sender, EventArgs e)
+        {
+            AddMessage("Tập tin upload không hợp lệ!");
         }
     }
 }

@@ -47,6 +47,7 @@
             <label for="discription">Mô tả</label>
             <textarea class="form-control" rows="3" runat="server" id="discription"></textarea>
         </div>
+        </div>
         </form>
 
 </asp:Content>
