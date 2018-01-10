@@ -12,7 +12,7 @@
                 <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Lưu" OnClick="btnSave_Click" />
                 <asp:Button ID="btnSaveNClose" CssClass="btn btn-primary" runat="server" Text="Lưu và đóng" OnClick="btnSaveNClose_Click" />
                 <asp:Button ID="btnSaveNNew" CssClass="btn btn-primary" runat="server" Text="Lưu và tạo mới" OnClick="btnSaveNNew_Click" />
-                <a href="#" class="btn btn-primary">Đóng</a>
+                <a href="UserList.aspx" class="btn btn-primary">Đóng</a>
             </div>
             <div class="container">
                 <ul id="error_messages" runat="server">

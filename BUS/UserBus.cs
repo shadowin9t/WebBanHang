@@ -28,7 +28,7 @@ namespace BUS
                 new SqlParameter("@username",username),
                 new SqlParameter("@password",Hash.getHashSha256(password))
             };
-            DataTable dt = DataConfig.Instance.GetTable(sql,par);
+            DataTable dt = DataConfig.Instance.GetTable(sql, par);
             return dt.Rows.Count > 0;
         }
 
@@ -106,6 +106,16 @@ namespace BUS
             return DataConfig.Instance.ExecuteNonQuery(sql, par) == 1;
         }
 
+        public bool UpdatePassword(string username, string oldpwd)
+        {
+            string sql = "update tb_user set password = @pwd where username = @username";
+            var pars = new SqlParameter[] {
+                new SqlParameter("@username", username),
+                new SqlParameter("@pwd",Hash.getHashSha256(oldpwd))
+            };
+            return DataConfig.Instance.ExecuteNonQuery(sql,pars)>0;
+        }
+
         public bool UpdateUser(UserEntity user)
         {
             string sql = "update tb_user set firstname = @firstname, lastname = @lastname, email = @email where username = @username";
@@ -129,7 +139,7 @@ namespace BUS
         {
             DataTable dt = GetTable();
             List<UserEntity> ls = new List<UserEntity>();
-            foreach(DataRow row in dt.Rows)
+            foreach (DataRow row in dt.Rows)
             {
                 ls.Add(GetUser(row));
             }
@@ -150,10 +160,10 @@ namespace BUS
             };
             DataTable dt = DataConfig.Instance.GetTable(sql, pars);
             List<PermissionEntity> roles = new List<PermissionEntity>();
-            foreach(DataRow row in dt.Rows)
+            foreach (DataRow row in dt.Rows)
             {
                 var p = new PermissionEntity();
-                p.ID = row["permissionid"].ToString();
+                p.ID = row["permissionid"].ToString().Trim();
                 roles.Add(p);
             }
             return roles;
@@ -163,7 +173,7 @@ namespace BUS
         {
             var ls = GetPermission(username);
             string str = "admin";
-            foreach(var p  in ls)
+            foreach (var p in ls)
             {
                 str += "," + p.ID;
             }
@@ -186,9 +196,9 @@ namespace BUS
             SqlParameter[] pars = new SqlParameter[] {
                 new SqlParameter("@username", user.Username)
             };
-            DataConfig.Instance.ExecuteNonQuery(sql,pars);
+            DataConfig.Instance.ExecuteNonQuery(sql, pars);
             int count = 0;
-            foreach(var p in pers)
+            foreach (var p in pers)
             {
                 count += AddPermission(user, p);
             }

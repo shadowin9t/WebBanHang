@@ -48,7 +48,6 @@ namespace WebBanHang
 
         protected void Session_End(object sender, EventArgs e)
         {
-            Session["Visitor"] = (int)Session["Visitor"] - 1; ;
         }
 
         protected void Application_End(object sender, EventArgs e)

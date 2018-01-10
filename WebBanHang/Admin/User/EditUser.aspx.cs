@@ -164,5 +164,40 @@ namespace WebBanHang.Admin.User
                 success_messages.Controls.Add(message);
             }
         }
+
+        public void AddErrorMessage(string value)
+        {
+            var message = new HtmlGenericControl();
+            message.TagName = "li";
+            message.InnerText = value;
+            error_messages.Controls.Add(message);
+        }
+
+        public void AddSucessMessage(string value)
+        {
+            var message = new HtmlGenericControl();
+            message.TagName = "li";
+            message.InnerText = value;
+            success_messages.Controls.Add(message);
+        }
+
+        protected void changepassword_ServerClick(object sender, EventArgs e)
+        {
+            error_messages.Controls.Clear();
+
+            if(newpassword.Value != confirmpassword.Value)
+            {
+                AddErrorMessage("Mật khẩu xác nhận không khớp");
+            }
+            else
+            {
+                if (BUS.UserBus.Instance.UpdatePassword(username.Value, newpassword.Value))
+                {
+                    success_messages.Controls.Clear();
+                    AddSucessMessage("Đổi mật khẩu thành công");
+                }
+            }
+            
+        }
     }
 }

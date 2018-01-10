@@ -35,7 +35,7 @@ namespace BUS
             {
                 PermissionEntity p = new PermissionEntity();
                 p.Name = row["permissionname"].ToString();
-                p.ID = row["permissionid"].ToString();
+                p.ID = row["permissionid"].ToString().Trim();
                 ls.Add(p);
             }
             return ls;
