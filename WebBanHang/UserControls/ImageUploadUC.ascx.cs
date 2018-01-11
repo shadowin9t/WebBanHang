@@ -13,8 +13,8 @@ namespace WebBanHang.UserControls
     {
         public int MaxSize = 1024 * 1024;
         public event EventHandler GetError;
-        public string ImagePath = "/images/products/";
-        public string DefaultUrl = "/images/products/default.png";
+        public string ImagePath { get; set; } = "/images/products/";
+        public string DefaultUrl { get; set; } = "/images/products/default.png";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -30,23 +30,26 @@ namespace WebBanHang.UserControls
 
         bool UploadImage(out string message)
         {
-            string[] validimage = {"image/png","image/jpg","image/jpeg"};
-            if (fileupload.HasFile)
+            string[] validimage = {".png",".jpg",".jpeg"};
+            if (UploadedFile.Value != String.Empty)
             {
-                if (validimage.Contains(fileupload.PostedFile.ContentType))
+                string extension = System.IO.Path.GetExtension(UploadedFile.Value);
+                string fname = System.IO.Path.GetFileNameWithoutExtension(UploadedFile.Value);
+                if (validimage.Contains(extension))
                 {
-                    if (fileupload.PostedFile.ContentLength < MaxSize)
+                    if (UploadedFile.PostedFile.ContentLength < MaxSize)
                     {
-                        string filename = fileupload.FileName + System.IO.Path.GetExtension(fileupload.FileName);
+                        string filename = fname;
                         string path = Server.MapPath(ImagePath);
                         int index = 1;
-                        while(System.IO.File.Exists(path+filename))
+                        while(System.IO.File.Exists(path+filename+extension))
                         {
-                            filename = fileupload.FileName + index.ToString() + System.IO.Path.GetExtension(fileupload.FileName);
+                            filename = filename + index.ToString();
                             index++;
                         }
-                        fileupload.SaveAs(path + filename);
-                        image.ImageUrl = ImagePath + filename;
+                        HttpPostedFile file = UploadedFile.PostedFile;
+                        file.SaveAs(path + filename + extension);
+                        image.ImageUrl = ImagePath + filename + extension;
                         message = "SUCCESS";
                         return true;
                     }

@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserManagementControl.ascx.cs" Inherits="WebBanHang.UserControls.UserManagementControl" %>
-<form runat="server">
     <div class="btn-group">
         <button type="button" class="btn btn-primary" id="addBtn" runat="server" onserverclick="addBtn_ServerClick">Thêm</button>
         <button type="button" class="btn btn-primary" id="deleteBtn" runat="server" onserverclick="deleteBtn_ServerClick">Xóa</button>
@@ -28,5 +27,3 @@
             <asp:BoundField DataField="email" HeaderText="Email" />
         </Columns>
     </asp:GridView>
-
-</form>

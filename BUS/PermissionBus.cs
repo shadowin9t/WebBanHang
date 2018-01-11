@@ -27,6 +27,7 @@ namespace BUS
             return new DAO.DataConfig().GetTable(sql);
         }
 
+
         public List<PermissionEntity> GetPermissions()
         {
             DataTable dt = GetTable();

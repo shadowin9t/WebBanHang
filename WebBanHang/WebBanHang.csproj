@@ -100,6 +100,9 @@
     <Content Include="Admin\Product\AddProduct.aspx" />
     <Content Include="Admin\Product\AddCategory.aspx" />
     <Content Include="Admin\Product\ProductList.aspx" />
+    <Content Include="Admin\Promotion\EditPromotion.aspx" />
+    <Content Include="Admin\Promotion\AddPromotion.aspx" />
+    <Content Include="Admin\Promotion\Default.aspx" />
     <Content Include="Admin\signout.aspx" />
     <Content Include="Admin\Styles\shop-homepage.css" />
     <Content Include="Admin\Styles\Style.css" />
@@ -136,8 +139,9 @@
     <Content Include="UserControls\AdminSideMenuUC.ascx" />
     <Content Include="UserControls\ImageUploadUC.ascx" />
     <Content Include="UserControls\ProductsControl.ascx" />
-    <Content Include="UserControls\ProductSumary.ascx" />
-    <Content Include="UserControls\RandomProduct.ascx" />
+    <Content Include="UserControls\Product\ProductSumary.ascx" />
+    <Content Include="UserControls\Product\FeatureProduct.ascx" />
+    <Content Include="UserControls\Product\RandomProduct.ascx" />
     <Content Include="UserControls\UserManagementControl.ascx" />
     <Content Include="UserControls\UserPanelUC.ascx" />
   </ItemGroup>
@@ -197,6 +201,27 @@
     </Compile>
     <Compile Include="Admin\Product\ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Promotion\EditPromotion.aspx.cs">
+      <DependentUpon>EditPromotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Promotion\EditPromotion.aspx.designer.cs">
+      <DependentUpon>EditPromotion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Promotion\AddPromotion.aspx.cs">
+      <DependentUpon>AddPromotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Promotion\AddPromotion.aspx.designer.cs">
+      <DependentUpon>AddPromotion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Promotion\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Promotion\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\signout.aspx.cs">
       <DependentUpon>signout.aspx</DependentUpon>
@@ -280,18 +305,25 @@
     <Compile Include="UserControls\ProductsControl.ascx.designer.cs">
       <DependentUpon>ProductsControl.ascx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ProductSumary.ascx.cs">
+    <Compile Include="UserControls\Product\ProductSumary.ascx.cs">
       <DependentUpon>ProductSumary.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserControls\ProductSumary.ascx.designer.cs">
+    <Compile Include="UserControls\Product\ProductSumary.ascx.designer.cs">
       <DependentUpon>ProductSumary.ascx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\RandomProduct.ascx.cs">
+    <Compile Include="UserControls\Product\FeatureProduct.ascx.cs">
+      <DependentUpon>FeatureProduct.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Product\FeatureProduct.ascx.designer.cs">
+      <DependentUpon>FeatureProduct.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Product\RandomProduct.ascx.cs">
       <DependentUpon>RandomProduct.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserControls\RandomProduct.ascx.designer.cs">
+    <Compile Include="UserControls\Product\RandomProduct.ascx.designer.cs">
       <DependentUpon>RandomProduct.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserManagementControl.ascx.cs">
@@ -336,7 +368,6 @@
     <Folder Include="images\categories\" />
     <Folder Include="images\temp\" />
     <Folder Include="UserControls\Customer\" />
-    <Folder Include="UserControls\Product\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -153,7 +153,14 @@ namespace BUS
 
         public List<ProductEntity> GetRandomProducts(int number)
         {
-            string sql = "select top " + number.ToString() + " * from tb_product";
+            string sql = "select top " + number.ToString() + " * from tb_product where statusid=1";
+            DataTable dt = DataConfig.Instance.GetTable(sql);
+            return DataTableToList(dt);
+        }
+
+        public List<ProductEntity> GetFeatureProducts(int number)
+        {
+            string sql = "select top " + number.ToString() + " * from tb_product where statusid=1 and feature=true";
             DataTable dt = DataConfig.Instance.GetTable(sql);
             return DataTableToList(dt);
         }

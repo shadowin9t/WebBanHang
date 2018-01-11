@@ -88,6 +88,8 @@ namespace WebBanHang.Admin.User
         {
             try
             {
+                success_messages.Controls.Clear();
+                error_messages.Controls.Clear();
                 var user = GetUser();
                 var ps = GetPermissions();
                 if(user!=null)
@@ -95,17 +97,15 @@ namespace WebBanHang.Admin.User
                     BUS.UserBus.Instance.UpdateUser(user);
                     BUS.UserBus.Instance.UpdatePermission(user, ps);
                     Binding(user);
+                    AddSucessMessage("Cập nhật người dùng thành công");
                 }
                 else
                 {
-                    var message = new HtmlGenericControl();
-                    message.TagName = "li";
-                    message.InnerText = "CREATE_USER_SUCCESS";
-                    success_messages.Controls.Add(message);
+                    AddErrorMessage("Không tìm thấy người dùng");
                 }
             } catch(Exception ex)
             {
-
+                AddErrorMessage(ex.Message);
             }
 
         }
@@ -128,6 +128,8 @@ namespace WebBanHang.Admin.User
 
         protected void btnSaveNClose_Click(object sender, EventArgs e)
         {
+            error_messages.Controls.Clear();
+            success_messages.Controls.Clear();
             var user = GetUser();
             var ps = GetPermissions();
             if (user != null)
@@ -135,18 +137,17 @@ namespace WebBanHang.Admin.User
                 BUS.UserBus.Instance.UpdateUser(user);
                 BUS.UserBus.Instance.UpdatePermission(user, ps);
                 Response.Redirect(Page.ResolveUrl("UserList.aspx"));
-                Binding(user);
             }
             else
             {
-                var message = new HtmlGenericControl();
-                message.TagName = "li";
-                success_messages.Controls.Add(message);
+                AddErrorMessage("Cập nhật người dùng thất bại");
             }
         }
 
         protected void btnSaveNNew_Click(object sender, EventArgs e)
         {
+            success_messages.Controls.Clear();
+            error_messages.Controls.Clear();
             var user = GetUser();
             var ps = GetPermissions();
             if (user != null)
@@ -154,14 +155,10 @@ namespace WebBanHang.Admin.User
                 BUS.UserBus.Instance.UpdateUser(user);
                 BUS.UserBus.Instance.UpdatePermission(user, ps);
                 Response.Redirect("CreateUser.aspx");
-                Binding(user);
             }
             else
             {
-                var message = new HtmlGenericControl();
-                message.TagName = "li";
-                message.InnerText = "CREATE_USER_SUCCESS";
-                success_messages.Controls.Add(message);
+                AddErrorMessage("Cập nhật người dùng thất bại");
             }
         }
 

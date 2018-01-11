@@ -44,6 +44,7 @@
     <Compile Include="ProductBus.cs" />
     <Compile Include="CategoryBus.cs" />
     <Compile Include="PermissionBus.cs" />
+    <Compile Include="PromotionBus.cs" />
     <Compile Include="StatusBus.cs" />
     <Compile Include="UserBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

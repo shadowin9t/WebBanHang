@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="PermissionEntity.cs" />
     <Compile Include="ProductEntity.cs" />
+    <Compile Include="PromotionEntity.cs" />
     <Compile Include="StatusEntity.cs" />
     <Compile Include="UserEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

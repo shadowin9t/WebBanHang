@@ -19,7 +19,7 @@ namespace WebBanHang.UserControls
             {
                 var div = new HtmlGenericControl("div");
                 div.Attributes["class"] = "col-lg-4 col-md-6 mb-4";
-                var child = Page.LoadControl("~/UserControls/ProductSumary.ascx") as ProductSumary;
+                var child = Page.LoadControl("~/UserControls/Product/ProductSumary.ascx") as ProductSumary;
                 child.Product = p;
                 div.Controls.Add(child);
                 randomproductcontainer.Controls.Add(div);

@@ -17,10 +17,10 @@ namespace WebBanHang.UserControls
             if (Product == null)
                 return;
 
-                ProductHeader.InnerText = Product.ProductName;
-                imgproduct.Src = ResolveUrl("~/images/products/" + Product.DisplayImage);
-                hfinalprice.InnerText = Product.FinalPrice.ToString();
-                pfeature.InnerText = Product.ShortDescription;
+            ProductHeader.InnerText = Product.ProductName;
+            imgproduct.Src = ResolveUrl(Product.DisplayImage);
+            hfinalprice.InnerText = Product.FinalPrice.ToString();
+            pfeature.InnerText = Product.ShortDescription;
 
         }
     }

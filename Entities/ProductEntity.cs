@@ -16,7 +16,11 @@ namespace Entities
             public string Name { get; set; }
             public string Discription { get; set; }
             public string CategoryImage { get; set; }
+
+            [Required]
             public DateTime CreatedDate { get; set; }
+
+            [Required]
             public UserEntity CreatedBy { get; set; }
             public string Username
             {

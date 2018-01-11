@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
-    <form runat="server">
         <div class="container-fluid">
             <div class="btn-group">
                 <asp:Button ID="btnSave" CssClass="btn btn-primary" runat="server" Text="Lưu" OnClick="btnSave_Click" />
@@ -83,6 +82,4 @@
                 <textarea class="form-control" rows="5" runat="server" id="discription"></textarea>
             </div>
         </div>
-    </form>
-
 </asp:Content>
