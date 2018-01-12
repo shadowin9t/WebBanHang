@@ -7,3 +7,12 @@ F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\DAO.dll
 F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\DAO.pdb
 F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\Entities.dll
 F:\Projects\LTWeb\WebBanHang\BUS\bin\Debug\Entities.pdb
+D:\Document\GitHub\WebBanHang\BUS\obj\Debug\BUS.csprojResolveAssemblyReference.cache
+D:\Document\GitHub\WebBanHang\BUS\obj\Debug\BUS.dll
+D:\Document\GitHub\WebBanHang\BUS\obj\Debug\BUS.pdb
+D:\Document\GitHub\WebBanHang\BUS\bin\Debug\BUS.dll
+D:\Document\GitHub\WebBanHang\BUS\bin\Debug\BUS.pdb
+D:\Document\GitHub\WebBanHang\BUS\bin\Debug\DAO.dll
+D:\Document\GitHub\WebBanHang\BUS\bin\Debug\Entities.dll
+D:\Document\GitHub\WebBanHang\BUS\bin\Debug\DAO.pdb
+D:\Document\GitHub\WebBanHang\BUS\bin\Debug\Entities.pdb

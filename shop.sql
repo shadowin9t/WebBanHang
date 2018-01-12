@@ -49,13 +49,29 @@ permissionid char(30) primary key,
 permissionname nvarchar(255)
 );
 
-select * from tb_permission_user;
+
 
 create table tb_permission_user(
 permissionid char(30) foreign key references tb_permission(permissionid),
 username char(20) foreign key references tb_user(username),
 primary key (permissionid, username)
 );
+select * from tb_permission_user;
+
+INSERT INTO dbo.tb_user
+        ( username ,
+          password ,
+          firstname ,
+          lastname ,
+          email
+        )
+VALUES  ( 'admin' , -- username - char(20)
+          N'admin' , -- password - nvarchar(256)
+          N'hieu' , -- firstname - nvarchar(30)
+          N'hieu' , -- lastname - nvarchar(30)
+          N'hieu@gmail.com'  -- email - nvarchar(50)
+        )
+
 
 insert into tb_permission values('SUPER_ADMIN',N'Quyền quản trị hệ thống');
 insert into tb_permission values('USER_ADMIN',N'Quyền quản lí người dùng');
@@ -64,3 +80,39 @@ insert into tb_permission values('ORDER_ADMIN', N'Quyền quản lí đơn đặ
 insert into tb_permission values('ARTICLE_ADMIN', N'Quyền quản lí bài viết');
 
 insert into tb_permission_user values('SUPER_ADMIN','admin');
+
+
+CREATE TABLE tb_Customer(
+	CustomerId NVARCHAR(30) PRIMARY KEY,
+	Phone NVARCHAR(30),
+	Adress NVARCHAR(200),
+	FirtName NVARCHAR(30),
+	LastName NVARCHAR(30),
+	CreatedDate DATETIME,
+	Email NVARCHAR(30),
+	Pass NVARCHAR(256)
+);
+
+CREATE TABLE tb_OrderStatus(
+	OrderStatusId NVARCHAR(10) PRIMARY KEY,
+	OrderStatusName NVARCHAR(30)
+);
+
+CREATE TABLE tb_Order(
+	OrderId NVARCHAR(10) PRIMARY KEY,
+	CreatedDate DATETIME,
+	OrderDate DATETIME,
+	CustomerId NVARCHAR(30) NOT NULL,
+	OrderAdrees NVARCHAR(200),
+	StatusOrderId NVARCHAR(10) NOT NULL,
+	FOREIGN KEY (CustomerId) REFERENCES dbo.tb_Customer(CustomerId),
+	FOREIGN KEY (StatusOrderId) REFERENCES dbo.tb_OrderStatus(OrderStatusId)
+);
+
+CREATE TABLE tb_OrderDetail(
+	OrderId NVARCHAR(10) NOT NULL,
+	productid char(10) NOT NULL,
+	PRIMARY KEY (OrderId, productid),
+	FOREIGN KEY (OrderId) REFERENCES dbo.tb_Order(OrderId),
+	FOREIGN KEY (productid) REFERENCES dbo.tb_product(productid)
+);

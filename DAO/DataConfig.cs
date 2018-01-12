@@ -23,7 +23,7 @@ namespace DAO
             }
         }
 
-        string connstr = @"Data Source = DESKTOP-3BDG4J1\SQLEXPRESS; Initial Catalog = shop; Integrated Security = true";
+        string connstr = @"Data Source = .\SQLEXPRESS; Initial Catalog = shop; Integrated Security = true";
         SqlConnection connect()
         {
             return new SqlConnection(connstr);
