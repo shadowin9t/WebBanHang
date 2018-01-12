@@ -67,9 +67,9 @@ namespace WebBanHang.Admin.User
                     message.InnerText = "CREATE_USER_SUCCESS";
                     success_messages.Controls.Add(message);
                 }
-            } catch(Exception ex)
+            } catch(Exception)
             {
-
+                
             }
 
         }
