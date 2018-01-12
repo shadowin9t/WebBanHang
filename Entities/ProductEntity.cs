@@ -113,5 +113,15 @@ namespace Entities
             bool valid = Validator.TryValidateObject(this, context, rs, true);
             return valid;
         }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is ProductEntity)
+            {
+                var e = obj as ProductEntity;
+                return e.ID == ID;
+            }
+            return false;
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace WebBanHang.UserControls
         void LoadProduct(ProductEntity p)
         {
             ProductHeader.InnerText = p.ProductName;
-            ProductHeader.HRef = "/Products.aspx?id=" + p.ID;
+            ProductHeader.HRef = "/detail.aspx?id=" + p.ID;
             imgproduct.Src = ResolveUrl(p.DisplayImage);
             hfinalprice.InnerText = p.FinalPrice.ToString();
             pfeature.InnerText = p.ShortDescription;
