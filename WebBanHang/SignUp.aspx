@@ -4,11 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <div class="container">
-        
-            <ul runat="server" id="ULError" class="alert alert-danger" visible ="false">
-            </ul>
-     
-        
+        <ul runat="server" id="ULError" class="alert alert-danger" visible="false">
+        </ul>
+
         <div class="form-group">
             <label for="txtemail">Email</label>
             <input type="email" class="form-control" id="txtemail" runat="server" />
@@ -18,7 +16,7 @@
                 <label>Họ</label>
                 <input type="text" class="form-control" id="txtLastname" runat="server" />
             </div>
-            <div class="form-group col"">
+            <div class="form-group col">
                 <label>Tên</label>
                 <input type="text" class="form-control" id="txtFirstname" runat="server" />
             </div>

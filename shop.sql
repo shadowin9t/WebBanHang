@@ -80,10 +80,8 @@ insert into tb_permission values('ORDER_ADMIN', N'Quyền quản lí đơn đặ
 insert into tb_permission values('ARTICLE_ADMIN', N'Quyền quản lí bài viết');
 
 insert into tb_permission_user values('SUPER_ADMIN','admin');
-
-
 CREATE TABLE tb_Customer(
-	CustomerId NVARCHAR(30) PRIMARY KEY,
+	CustomerId INT IDENTITY(2018,1) PRIMARY KEY,
 	Phone NVARCHAR(30),
 	Adress NVARCHAR(200),
 	FirtName NVARCHAR(30),
@@ -102,7 +100,7 @@ CREATE TABLE tb_Order(
 	OrderId NVARCHAR(10) PRIMARY KEY,
 	CreatedDate DATETIME,
 	OrderDate DATETIME,
-	CustomerId NVARCHAR(30) NOT NULL,
+	CustomerId INT NOT NULL,
 	OrderAdrees NVARCHAR(200),
 	StatusOrderId NVARCHAR(10) NOT NULL,
 	FOREIGN KEY (CustomerId) REFERENCES dbo.tb_Customer(CustomerId),

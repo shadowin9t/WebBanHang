@@ -14,8 +14,7 @@ namespace Entities
         {
 
         }
-        [Required(ErrorMessage = "CustomerId_EMPTY_MESSAGE")]
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         [Required(ErrorMessage = "Phone_EMPTY_MESSAGE")]
         [StringLength(15, MinimumLength = 7, ErrorMessage = "Phone_INVALID_LENGTH_MESSAGE")]
@@ -41,7 +40,7 @@ namespace Entities
         
         public CustomerEntity (DataRow row)
         {
-            CustomerId = row["CustomerId"].ToString();
+            CustomerId = (int) row["CustomerId"];
             Phone = row["Phone"].ToString();
             Adress = row["Adress"].ToString();
             FirstName = row["FirtName"].ToString();

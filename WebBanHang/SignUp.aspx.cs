@@ -28,7 +28,6 @@ namespace WebBanHang
         protected void btnSubmit_ServerClick(object sender, EventArgs e)
         {
             CustomerEntity cus = new CustomerEntity();
-            cus.CustomerId = txtemail.Value;
             cus.Adress = txtAddress.Value;
             cus.CreatedDate = DateTime.Now;
             cus.Email = txtemail.Value;

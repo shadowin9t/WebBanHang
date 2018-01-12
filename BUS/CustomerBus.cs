@@ -31,6 +31,34 @@ namespace BUS
             };
             return DataConfig.Instance.GetTable(sql, par).Rows.Count > 0;
         }
+
+        public CustomerEntity GetCustomer(string email, string password)
+        {
+            string sql = "select * from tb_customer where email = @email and pass=@pass;";
+            SqlParameter[] par = new SqlParameter[] {
+                new SqlParameter("@email",email),
+                new SqlParameter("@pass", Hash.getHashSha256(password))
+            };
+            DataTable dt = DataConfig.Instance.GetTable(sql, par);
+            if (dt.Rows.Count < 1) return null;
+            CustomerEntity customer = new CustomerEntity(dt.Rows[0]);
+            return customer;
+        }
+
+        public CustomerEntity GetCustomer(int id)
+        {
+            string sql = "select * from tb_customer where customerid = @id;";
+            SqlParameter[] par = new SqlParameter[] {
+                new SqlParameter("@id",id)
+            };
+            DataTable dt = DataConfig.Instance.GetTable(sql, par);
+            if (dt.Rows.Count == 1)
+            {
+                DataRow row = dt.Rows[0];
+                return new CustomerEntity(row);
+            }
+            return null;
+        }
       
         public CustomerEntity GetCustomer(string email)
         {
@@ -49,10 +77,9 @@ namespace BUS
 
         public bool AddCustomer(CustomerEntity cus)
         {
-            string sql = "insert into tb_customer values(@customerid, @phone, @address, @firtname, @lastname, @createddate, @email, @pass);";
+            string sql = "insert into tb_customer values(@phone, @address, @firtname, @lastname, @createddate, @email, @pass);";
             SqlParameter[] par = new SqlParameter[] {
-                new SqlParameter("@customerid",cus.CustomerId),
-                new SqlParameter("@pass", cus.Pass),
+                new SqlParameter("@pass", Hash.getHashSha256(cus.Pass)),
                 new SqlParameter("@firtname",cus.FirstName),
                 new SqlParameter("@lastname",cus.LastName),
                 new SqlParameter("@email",cus.Email),
