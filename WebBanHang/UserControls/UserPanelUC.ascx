@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="true" CodeBehind="UserPanelUC.ascx.cs" Inherits="WebBanHang.UserControls.UserPanelUC" %>
 <div ID="divLogin" runat="server">
-
     <div class="form-row align-items-center">
         <div class="col-auto">
             <label class="sr-only" for="inputusername">Tên đăng nhập</label>

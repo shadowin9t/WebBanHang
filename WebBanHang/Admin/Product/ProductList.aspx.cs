@@ -71,7 +71,7 @@ namespace WebBanHang.Admin.User
                     }
                 }
 
-                CreateSuccessMessage("Đã xóa " + count.ToString() + " người dùng");
+                CreateSuccessMessage("Đã xóa " + count.ToString() + " sản phẩm");
                 LoadData();
             }
             catch (Exception exception)

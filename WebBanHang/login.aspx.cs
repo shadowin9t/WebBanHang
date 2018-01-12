@@ -24,7 +24,6 @@ namespace WebBanHang
 
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
-            UserEntity user = BUS.UserBus.Instance.GetUser(txtUsername.Text, txtPassword.Text);
             if (!AuthenticateHelper.Login(txtUsername.Text, txtPassword.Text, RememberMe.Checked, Response))
             {
                 pMessage.InnerText = "Tên tài khoản hoặc mật khẩu không đúng";

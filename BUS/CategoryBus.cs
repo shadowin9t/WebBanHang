@@ -27,24 +27,29 @@ namespace BUS
             return dt;
         }
 
+        ProductEntity.Category RowToCategory(DataRow row)
+        {
+            ProductEntity.Category category = new ProductEntity.Category();
+            category.ID = row["categoryid"].ToString();
+            category.Name = row["categoryname"].ToString();
+            category.Discription = row["discription"].ToString();
+            category.CreatedBy = new UserEntity()
+            {
+                Username = row["username"].ToString()
+            };
+            category.CreatedDate = (DateTime)row["createddate"];
+            category.CategoryImage = row["categoryimage"].ToString();
+            category.Status = StatusBus.Instance.GetStatus((int)row["statusid"]);
+            return category;
+        }
+
         public List<ProductEntity.Category> GetCategories()
         {
             DataTable dt = GetTable();
             List<ProductEntity.Category> ls = new List<ProductEntity.Category>();
             foreach (DataRow row in dt.Rows)
             {
-                ProductEntity.Category category = new ProductEntity.Category();
-                category.ID = row["categoryid"].ToString();
-                category.Name = row["categoryname"].ToString();
-                category.Discription = row["discription"].ToString();
-                category.CreatedBy = new UserEntity()
-                {
-                    Username = row["username"].ToString()
-                };
-                category.CreatedDate = (DateTime) row["createddate"];
-                category.CategoryImage = row["categoryimage"].ToString();
-                category.StatusId = (int) row["statusid"];
-                category.StatusName = row["statusname"].ToString();
+                ProductEntity.Category category = RowToCategory(row);
                 ls.Add(category);
             }
             return ls;
@@ -60,9 +65,7 @@ namespace BUS
             DataTable dt = DataConfig.Instance.GetTable(sql, pars);
             if (dt.Rows.Count < 1)
                 return null;
-            var cate = new ProductEntity.Category();
-            cate.ID = dt.Rows[0]["categoryid"].ToString();
-            cate.Name = dt.Rows[0]["categoryname"].ToString();
+            var cate = RowToCategory(dt.Rows[0]);
             return cate;
         }
 
@@ -97,6 +100,20 @@ namespace BUS
             SqlParameter[] pars = new SqlParameter[] {
                 new SqlParameter("@statusid", statusid),
                 new SqlParameter("@id", id)
+            };
+            return DataConfig.Instance.ExecuteNonQuery(sql, pars);
+        }
+
+        public int UpdateCategory(ProductEntity.Category e, string id)
+        {
+            string sql = "update tb_category set categoryname = @name, discription = @discription, categoryimage = @image, statusid = @status where categoryid = @id";
+            SqlParameter[] pars = new SqlParameter[]
+            {
+                new SqlParameter("@id", id),
+                new SqlParameter("@name", e.Name),
+                new SqlParameter("@discription", e.Discription),
+                new SqlParameter("@image", e.CategoryImage==null?(object)DBNull.Value : e.CategoryImage),
+                new SqlParameter("@status", e.StatusId)
             };
             return DataConfig.Instance.ExecuteNonQuery(sql, pars);
         }

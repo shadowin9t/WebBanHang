@@ -36,7 +36,8 @@ namespace WebBanHang.Admin.Product
             v.CreatedBy = Session["User"] as UserEntity;
             v.CreatedDate = DateTime.Now;
             v.Discription = discription.Value;
-            v.StatusId = int.Parse(ddlStatus.SelectedValue);
+            v.Status = StatusBus.Instance.GetStatus(int.Parse(ddlStatus.SelectedValue));
+            v.CreatedBy = UserBus.Instance.GetUser(User.Identity.Name);
             return v;
         }
 

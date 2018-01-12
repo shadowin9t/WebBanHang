@@ -23,8 +23,28 @@ namespace WebBanHang.UserControls
             {
                 divLogin.Visible = false;
                 divUserinfo.Visible = true;
-                var user = BUS.UserBus.Instance.GetUser(Context.User.Identity.Name);
-                dropdownMenuButton.InnerText = user.Firstname;
+                if (Context.User.IsInRole("admin"))
+                {
+                    var user = BUS.UserBus.Instance.GetUser(Context.User.Identity.Name);
+                    if (user == null)
+                    {
+                        Response.Redirect("login.aspx");
+                        return;
+                    }
+                    dropdownMenuButton.InnerText = user.Firstname;
+                }
+                else
+                {
+                    int cusid = -1;
+                    int.TryParse(Context.User.Identity.Name, out cusid);
+                    var cus = BUS.CustomerBus.Instance.GetCustomer(cusid);
+                    if(cus==null)
+                    {
+                        Response.Redirect("login.aspx");
+                        return;
+                    }
+                    dropdownMenuButton.InnerText = cus.FirstName;
+                }                
             }
             else
             {
