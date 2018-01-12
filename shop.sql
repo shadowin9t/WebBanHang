@@ -95,6 +95,7 @@ CREATE TABLE tb_OrderStatus(
 	OrderStatusId NVARCHAR(10) PRIMARY KEY,
 	OrderStatusName NVARCHAR(30)
 );
+s
 
 CREATE TABLE tb_Order(
 	OrderId NVARCHAR(10) PRIMARY KEY,
