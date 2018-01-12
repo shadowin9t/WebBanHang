@@ -95,17 +95,7 @@ CREATE TABLE tb_OrderStatus(
 	OrderStatusId NVARCHAR(10) PRIMARY KEY,
 	OrderStatusName NVARCHAR(30)
 );
-
-create table tb_promotion(
-	promotionid char(10),
-	promotiontitle nvarchar(50),
-	shortdiscription nvarchar(200),
-	discription nvarchar(500),
-	displayimage nvarchar(256),
-	statusid int foreign key references tb_status(statusid),
-	createdby char(20) foreign key references tb_user(username),
-	createddate datetime
-);
+s
 
 CREATE TABLE tb_Order(
 	OrderId NVARCHAR(10) PRIMARY KEY,
