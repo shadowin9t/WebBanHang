@@ -20,7 +20,7 @@
                     <asp:CheckBox ID="chbox" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="Username" />
+            <asp:HyperLinkField DataTextField="ID" DataNavigateUrlFields="ID" DataNavigateUrlFormatString="EditCategory.aspx?cate={0}" HeaderText="ID" SortExpression="Username" />
             <asp:BoundField DataField="Name" HeaderText="Ten Loai" SortExpression="firstname" />
             <asp:BoundField DataField="CreatedDate" HeaderText="Ngày Tạo" />
             <asp:BoundField DataField="Username" HeaderText="Người Tạo" />

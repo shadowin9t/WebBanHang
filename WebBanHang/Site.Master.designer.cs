@@ -22,6 +22,24 @@ namespace WebBanHang {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// CategoryNavbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebBanHang.UserControls.CategoryNavbar CategoryNavbar;
+        
+        /// <summary>
+        /// SearchUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebBanHang.UserControls.SearchUC SearchUC;
+        
+        /// <summary>
         /// content control.
         /// </summary>
         /// <remarks>

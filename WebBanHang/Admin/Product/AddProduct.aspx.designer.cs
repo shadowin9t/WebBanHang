@@ -76,6 +76,15 @@ namespace WebBanHang.Admin.Product {
         protected global::System.Web.UI.HtmlControls.HtmlInputText productname;
         
         /// <summary>
+        /// ddlCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        
+        /// <summary>
         /// cbFeature control.
         /// </summary>
         /// <remarks>
@@ -92,15 +101,6 @@ namespace WebBanHang.Admin.Product {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WebBanHang.UserControls.ImageUploadUC imageupload;
-        
-        /// <summary>
-        /// ddlCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
         /// price control.

@@ -29,8 +29,33 @@ namespace Entities
                     return CreatedBy.Username;
                 }
             }
-            public int StatusId { get; set; }
-            public string StatusName { get; set; }
+
+            [Required]
+            public StatusEntity Status { get; set; }
+            public int StatusId
+            {
+                get
+                {
+                    return Status.Id;
+                }
+            }
+            public string StatusName
+            {
+                get
+                {
+                    return Status.Name;
+                }
+            }
+
+            public bool IsValidUpdatingCategory(List<string> messages)
+            {
+                List<ValidationResult> rs = new List<ValidationResult>();
+                ValidationContext context = new ValidationContext(this);
+                bool valid = Validator.TryValidateObject(this, context, rs, true);
+                messages =  rs.Select(p => p.ErrorMessage).ToList<string>();
+                return valid;
+            }
+
             public bool IsValidNewCategory(List<ValidationResult> rs)
             {
                 ValidationContext context = new ValidationContext(this);

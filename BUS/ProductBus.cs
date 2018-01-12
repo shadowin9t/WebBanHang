@@ -164,5 +164,14 @@ namespace BUS
             DataTable dt = DataConfig.Instance.GetTable(sql);
             return DataTableToList(dt);
         }
+
+        public List<ProductEntity> GetProductsByCategory(string cate)
+        {
+            string sql = "select * from tb_product where categoryid = @cate order by feature desc";
+            var pars = new SqlParameter[] {
+                new SqlParameter("@cate",cate)
+            };
+            return DataTableToList(DataConfig.Instance.GetTable(sql,pars));
+        }
     }
 }

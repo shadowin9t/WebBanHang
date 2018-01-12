@@ -96,6 +96,7 @@
   <ItemGroup>
     <Content Include="Admin\ErrorPage\PermissionDenied.aspx" />
     <Content Include="Admin\Index.aspx" />
+    <Content Include="Admin\Product\EditCategory.aspx" />
     <Content Include="Admin\Product\EditProduct.aspx" />
     <Content Include="Admin\Product\AddProduct.aspx" />
     <Content Include="Admin\Product\AddCategory.aspx" />
@@ -111,6 +112,7 @@
     <Content Include="Admin\User\CreateUser.aspx" />
     <Content Include="Admin\User\UserList.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="detail.aspx" />
     <Content Include="images\products\default.png" />
     <Content Include="login.aspx" />
     <Content Include="Global.asax" />
@@ -122,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\dangnhap.aspx" />
+    <Content Include="product.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -137,11 +140,14 @@
     <Content Include="Scripts\tether.min.js" />
     <Content Include="Styles\shop-homepage.css" />
     <Content Include="UserControls\AdminSideMenuUC.ascx" />
+    <Content Include="UserControls\CategoryNavbar.ascx" />
     <Content Include="UserControls\ImageUploadUC.ascx" />
     <Content Include="UserControls\ProductsControl.ascx" />
     <Content Include="UserControls\Product\ProductSumary.ascx" />
     <Content Include="UserControls\Product\FeatureProduct.ascx" />
     <Content Include="UserControls\Product\RandomProduct.ascx" />
+    <Content Include="UserControls\PromotionSlider.ascx" />
+    <Content Include="UserControls\SearchUC.ascx" />
     <Content Include="UserControls\UserManagementControl.ascx" />
     <Content Include="UserControls\UserPanelUC.ascx" />
   </ItemGroup>
@@ -173,6 +179,13 @@
     </Compile>
     <Compile Include="Admin\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Product\EditCategory.aspx.cs">
+      <DependentUpon>EditCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Product\EditCategory.aspx.designer.cs">
+      <DependentUpon>EditCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Product\EditProduct.aspx.cs">
       <DependentUpon>EditProduct.aspx</DependentUpon>
@@ -266,6 +279,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="detail.aspx.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="detail.aspx.designer.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,6 +295,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="product.aspx.cs">
+      <DependentUpon>product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="product.aspx.designer.cs">
+      <DependentUpon>product.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -290,6 +317,13 @@
     </Compile>
     <Compile Include="UserControls\AdminSideMenuUC.ascx.designer.cs">
       <DependentUpon>AdminSideMenuUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CategoryNavbar.ascx.cs">
+      <DependentUpon>CategoryNavbar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\CategoryNavbar.ascx.designer.cs">
+      <DependentUpon>CategoryNavbar.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ImageUploadUC.ascx.cs">
       <DependentUpon>ImageUploadUC.ascx</DependentUpon>
@@ -325,6 +359,20 @@
     </Compile>
     <Compile Include="UserControls\Product\RandomProduct.ascx.designer.cs">
       <DependentUpon>RandomProduct.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PromotionSlider.ascx.cs">
+      <DependentUpon>PromotionSlider.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\PromotionSlider.ascx.designer.cs">
+      <DependentUpon>PromotionSlider.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SearchUC.ascx.cs">
+      <DependentUpon>SearchUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\SearchUC.ascx.designer.cs">
+      <DependentUpon>SearchUC.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserManagementControl.ascx.cs">
       <DependentUpon>UserManagementControl.ascx</DependentUpon>
@@ -384,7 +432,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50251</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50251/</IISUrl>
+          <IISUrl>http://localhost:50250/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

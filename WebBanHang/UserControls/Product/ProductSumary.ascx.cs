@@ -11,17 +11,37 @@ namespace WebBanHang.UserControls
 {
     public partial class ProductSumary : System.Web.UI.UserControl
     {
+        string productid;
+        public string ProductID
+        {
+            get
+            {
+                return productid;
+            }
+            set
+            {
+                productid = value;
+                ProductEntity Product = ProductBus.Instance.GetProductById(productid);
+                LoadProduct(Product);
+            }
+        }
         public ProductEntity Product;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Product == null)
+                Product = ProductBus.Instance.GetProductById(ProductID);
+            if (Product == null)
                 return;
+            LoadProduct(Product);
+        }
 
-            ProductHeader.InnerText = Product.ProductName;
-            imgproduct.Src = ResolveUrl(Product.DisplayImage);
-            hfinalprice.InnerText = Product.FinalPrice.ToString();
-            pfeature.InnerText = Product.ShortDescription;
-
+        void LoadProduct(ProductEntity p)
+        {
+            ProductHeader.InnerText = p.ProductName;
+            ProductHeader.HRef = "/Products.aspx?id=" + p.ID;
+            imgproduct.Src = ResolveUrl(p.DisplayImage);
+            hfinalprice.InnerText = p.FinalPrice.ToString();
+            pfeature.InnerText = p.ShortDescription;
         }
     }
 }

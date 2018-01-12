@@ -32,26 +32,29 @@
                         <label for="productname">Tên sản phẩm</label>
                         <input type="text" class="form-control" id="productname" runat="server" required="required" />
                     </div>
-                    <div class="col">
-                        <label for="cbFeature">Sản phẩm đặc trưng</label>
-                        <div>
-                            <label class="switch form-control">
-                                <input type="checkbox" checked="checked" id="cbFeature" runat="server" />
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="ddlCategory">Loại sản phẩm</label>
+                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control" DataTextField="Name" DataValueField="Id">
+                    </asp:DropDownList>
+                </div>
+                <div class="form-group">
+                    <label for="cbFeature">Sản phẩm đặc trưng</label>
+                    <div>
+                        <label class="switch form-control">
+                            <input type="checkbox" checked="checked" id="cbFeature" runat="server" />
+                            <span class="slider round"></span>
+                        </label>
                     </div>
                 </div>
+                
             </div>
             <div class="col">
                 <My:ImageUpload runat="server" ID="imageupload" OnGetError="imageupload_GetError" />
             </div>
         </div>
-        <div class="form-group">
-            <label for="ddlCategory">Loại sản phẩm</label>
-            <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control" DataTextField="Name" DataValueField="Id">
-            </asp:DropDownList>
-        </div>
+
         <div class="form-row">
             <div class="col">
                 <label for="price">Giá bán</label>
